@@ -14,18 +14,24 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
     override fun getModelStoreOwner() = activity as? MainActivity
 
     override fun updateUI(binding: FragmentMainBinding, data: MainData) {
-        binding.dark.setColors(R.color.black, R.color.white)
-        binding.white.setColors(R.color.black, R.color.white)
-        binding.gradient.setColors(R.color.black, R.color.white)
-        binding.color1.setColors(R.color.black, R.color.white)
-        binding.color2.setColors(R.color.black, R.color.white)
+        binding.dark.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.dark.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.white.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.white.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.gradient.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.gradient.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.color1.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.color1.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.color2.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.color2.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
         data.currentState?.let { state ->
             when (state) {
-                MainData.State.DARK -> binding.dark.setColors(state.color, state.textColor)
-                MainData.State.WHITE -> binding.white.setColors(state.color, state.textColor)
-                MainData.State.GRADIENT -> binding.gradient.setColors(state.color, state.textColor)
-                MainData.State.COLOR1 -> binding.color1.setColors(state.color, state.textColor)
-                MainData.State.COLOR2 -> binding.color2.setColors(state.color, state.textColor)
+                MainData.State.DARK -> state.colorButton(binding.dark)
+                MainData.State.WHITE -> state.colorButton(binding.white)
+                MainData.State.GRADIENT -> state.colorButton(binding.gradient)
+                MainData.State.COLOR1 -> state.colorButton(binding.color1)
+                MainData.State.COLOR2 -> state.colorButton(binding.color2)
             }
         }
     }
@@ -41,6 +47,6 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
 
     private fun Button.setColors(bgColor: Int, fgColor: Int) {
         background = ContextCompat.getDrawable(context, bgColor)
-        setTextColor(fgColor)
+        setTextColor(ContextCompat.getColor(context, fgColor))
     }
 }
