@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -8,43 +8,100 @@
 
         <Button
             android:id="@+id/white"
-            android:text="White"
             style="@style/Button"
-            app:layout_constraintStart_toStartOf="@id/marginStart"
+            android:text="White"
             app:layout_constraintEnd_toStartOf="@id/dark"
-            app:layout_constraintTop_toTopOf="@id/marginTop"/>
+            app:layout_constraintStart_toStartOf="@id/marginStart"
+            app:layout_constraintTop_toTopOf="@id/marginTop" />
 
         <Button
             android:id="@+id/dark"
-            android:text="Off"
             style="@style/Button"
+            android:text="Off"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
             app:layout_constraintStart_toEndOf="@id/white"
-            app:layout_constraintTop_toTopOf="@id/marginTop"/>
+            app:layout_constraintTop_toTopOf="@id/marginTop" />
 
         <Button
             android:id="@+id/gradient"
-            android:text="Gradient"
             style="@style/Button"
+            android:text="Gradient"
+            app:layout_constraintEnd_toStartOf="@id/equalizer"
             app:layout_constraintStart_toStartOf="@id/marginStart"
-            app:layout_constraintEnd_toStartOf="@id/color1"
-            app:layout_constraintTop_toBottomOf="@id/white"/>
+            app:layout_constraintTop_toBottomOf="@id/white" />
+
+        <Button
+            android:id="@+id/equalizer"
+            style="@style/Button"
+            android:text="Equalizer"
+            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintStart_toEndOf="@id/gradient"
+            app:layout_constraintTop_toBottomOf="@id/dark" />
+
 
         <Button
             android:id="@+id/color1"
-            android:text="Color 1"
             style="@style/Button"
-            app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toEndOf="@id/gradient"
-            app:layout_constraintTop_toBottomOf="@id/dark"/>
+            android:text="Color 1"
+            app:layout_constraintEnd_toEndOf="@id/gradient"
+            app:layout_constraintStart_toStartOf="@id/marginStart"
+            app:layout_constraintTop_toBottomOf="@id/gradient" />
 
         <Button
             android:id="@+id/color2"
-            android:text="Color 2"
             style="@style/Button"
+            android:text="Color 2"
+            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintStart_toEndOf="@id/color1"
+            app:layout_constraintTop_toBottomOf="@id/gradient" />
+
+        <Button
+            android:id="@+id/pickColor1"
+            style="@style/Button"
+            android:text="Select Color 1"
+            app:layout_constraintEnd_toStartOf="@id/pickColor2"
             app:layout_constraintStart_toStartOf="@id/marginStart"
-            app:layout_constraintEnd_toEndOf="@id/gradient"
-            app:layout_constraintTop_toBottomOf="@id/gradient"/>
+            app:layout_constraintTop_toBottomOf="@id/color2" />
+
+        <Button
+            android:id="@+id/pickColor2"
+            style="@style/Button"
+            android:text="Select Color 2"
+            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintStart_toEndOf="@id/pickColor1"
+            app:layout_constraintTop_toBottomOf="@id/color2" />
+
+        <Button
+            android:id="@+id/on"
+            style="@style/Button"
+            android:text="On"
+            app:layout_constraintBottom_toTopOf="@id/moreLight"
+            app:layout_constraintEnd_toStartOf="@id/off"
+            app:layout_constraintStart_toStartOf="@id/marginStart" />
+
+        <Button
+            android:id="@+id/off"
+            style="@style/Button"
+            android:text="Off"
+            app:layout_constraintBottom_toTopOf="@id/lessLight"
+            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintStart_toEndOf="@id/gradient" />
+
+        <Button
+            android:id="@+id/moreLight"
+            style="@style/Button"
+            android:text="+"
+            app:layout_constraintBottom_toBottomOf="@id/marginBottom"
+            app:layout_constraintEnd_toStartOf="@id/lessLight"
+            app:layout_constraintStart_toStartOf="@id/marginStart" />
+
+        <Button
+            android:id="@+id/lessLight"
+            style="@style/Button"
+            android:text="-"
+            app:layout_constraintBottom_toBottomOf="@id/marginBottom"
+            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintStart_toEndOf="@id/gradient" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/marginStart"

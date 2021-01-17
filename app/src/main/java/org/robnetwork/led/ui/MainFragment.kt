@@ -1,8 +1,10 @@
 package org.robnetwork.led.ui
 
 import android.content.Context
+import android.util.Log
 import android.widget.Button
 import androidx.core.content.ContextCompat
+import com.github.dhaval2404.colorpicker.ColorPickerDialog
 import org.robnetwork.led.R
 import org.robnetwork.led.databinding.FragmentMainBinding
 import org.robnetwork.led.model.MainData
@@ -24,6 +26,18 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.color1.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         binding.color2.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
         binding.color2.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.pickColor1.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.pickColor1.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.pickColor2.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.pickColor2.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.moreLight.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.moreLight.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.lessLight.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.lessLight.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.on.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.on.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.off.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.off.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
         data.currentState?.let { state ->
             when (state) {
@@ -43,6 +57,34 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.gradient.setOnClickListener { viewModel.gradient() }
         binding.color1.setOnClickListener { viewModel.color1() }
         binding.color2.setOnClickListener { viewModel.color2() }
+        binding.moreLight.setOnClickListener { viewModel.moreLight() }
+        binding.lessLight.setOnClickListener { viewModel.lessLight() }
+        binding.on.setOnClickListener { viewModel.on() }
+        binding.off.setOnClickListener { viewModel.off() }
+        binding.pickColor1.setOnClickListener {
+            ColorPickerDialog.Builder(context)
+                .setPositiveButton("Apply")
+                .setNegativeButton("Cancel")
+                .setColorListener { i, s ->
+                    binding.color1.text = s
+                    binding.color1.setBackgroundColor(i)
+                    Log.d(javaClass.simpleName, "Color : $i")
+                    viewModel.changeColor1(s)
+                }
+                .show()
+        }
+        binding.pickColor2.setOnClickListener {
+            ColorPickerDialog.Builder(context)
+                .setPositiveButton("Apply")
+                .setNegativeButton("Cancel")
+                .setColorListener { i, s ->
+                    binding.color2.text = s
+                    binding.color2.setBackgroundColor(i)
+                    Log.d(javaClass.simpleName, "Color : $i")
+                    viewModel.changeColor2(s)
+                }
+                .show()
+        }
     }
 
     private fun Button.setColors(bgColor: Int, fgColor: Int) {

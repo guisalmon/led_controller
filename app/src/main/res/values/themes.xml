@@ -13,12 +13,4 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
-    <style name="Button" parent="Widget.AppCompat.ActionButton">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/size_02</item>
-        <item name="textAllCaps">false</item>
-        <item name="android:textSize">18sp</item>
-    </style>
 </resources>
