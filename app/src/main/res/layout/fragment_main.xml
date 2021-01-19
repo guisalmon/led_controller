@@ -72,6 +72,15 @@
             app:layout_constraintTop_toBottomOf="@id/color2" />
 
         <Button
+            android:id="@+id/toggleSound"
+            style="@style/Button"
+            android:layout_marginBottom="@dimen/size_02"
+            android:text="Toggle sound"
+            app:layout_constraintBottom_toTopOf="@id/on"
+            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintStart_toStartOf="@id/marginStart" />
+
+        <Button
             android:id="@+id/on"
             style="@style/Button"
             android:text="On"

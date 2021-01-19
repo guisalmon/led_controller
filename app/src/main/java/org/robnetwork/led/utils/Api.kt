@@ -20,6 +20,9 @@ interface Api {
     @GET("color2")
     fun color2(): Call<Any>
 
+    @GET("equalizer")
+    fun equalizer(): Call<Any>
+
     @GET("brightness/+")
     fun moreLight(): Call<Any>
 
@@ -31,6 +34,9 @@ interface Api {
 
     @GET("power/off")
     fun off(): Call<Any>
+
+    @GET("toggle/sound")
+    fun toggleSound(): Call<Any>
 
     @GET("color1/{color}")
     fun color1(@Path("color") color: String): Call<Any>

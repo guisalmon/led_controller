@@ -15,10 +15,12 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun gradient() = RetrofitClient.api.gradient().enqueue(StateCallBack { update { it.copy(currentState = MainData.State.GRADIENT) } })
     fun color1() = RetrofitClient.api.color1().enqueue(StateCallBack { update { it.copy(currentState = MainData.State.COLOR1) } })
     fun color2() = RetrofitClient.api.color2().enqueue(StateCallBack { update { it.copy(currentState = MainData.State.COLOR2) } })
+    fun equalizer() = RetrofitClient.api.equalizer().enqueue(StateCallBack { })
     fun moreLight() = RetrofitClient.api.moreLight().enqueue(StateCallBack { })
     fun lessLight() = RetrofitClient.api.lessLight().enqueue(StateCallBack { })
     fun on() = RetrofitClient.api.on().enqueue(StateCallBack { })
     fun off() = RetrofitClient.api.off().enqueue(StateCallBack { })
+    fun toggleSound() = RetrofitClient.api.toggleSound().enqueue(StateCallBack { })
     fun changeColor1(color: String) = RetrofitClient.api.color1(color).enqueue(StateCallBack {})
     fun changeColor2(color: String) = RetrofitClient.api.color2(color).enqueue(StateCallBack {})
 

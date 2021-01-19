@@ -12,7 +12,6 @@ import org.robnetwork.led.model.MainData
 class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>() {
     override val layoutRes: Int = R.layout.fragment_main
     override val viewModelClass = MainViewModel::class.java
-
     override fun getModelStoreOwner() = activity as? MainActivity
 
     override fun updateUI(binding: FragmentMainBinding, data: MainData) {
@@ -38,6 +37,10 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.on.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         binding.off.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
         binding.off.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.equalizer.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.equalizer.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.toggleSound.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.toggleSound.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
         data.currentState?.let { state ->
             when (state) {
@@ -61,6 +64,8 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.lessLight.setOnClickListener { viewModel.lessLight() }
         binding.on.setOnClickListener { viewModel.on() }
         binding.off.setOnClickListener { viewModel.off() }
+        binding.equalizer.setOnClickListener { viewModel.equalizer() }
+        binding.toggleSound.setOnClickListener { viewModel.toggleSound() }
         binding.pickColor1.setOnClickListener {
             ColorPickerDialog.Builder(context)
                 .setPositiveButton("Apply")
@@ -85,10 +90,5 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
                 }
                 .show()
         }
-    }
-
-    private fun Button.setColors(bgColor: Int, fgColor: Int) {
-        background = ContextCompat.getDrawable(context, bgColor)
-        setTextColor(ContextCompat.getColor(context, fgColor))
     }
 }
