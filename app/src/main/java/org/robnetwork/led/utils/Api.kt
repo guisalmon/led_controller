@@ -1,7 +1,10 @@
 package org.robnetwork.led.utils
 
+import org.robnetwork.led.model.ConfigJSONData
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface Api {
@@ -24,10 +27,10 @@ interface Api {
     fun equalizer(): Call<Any>
 
     @GET("brightness/+")
-    fun moreLight(): Call<Any>
+    fun moreLight(): Call<ConfigJSONData>
 
     @GET("brightness/-")
-    fun lessLight(): Call<Any>
+    fun lessLight(): Call<ConfigJSONData>
 
     @GET("power/on")
     fun on(): Call<Any>
@@ -38,9 +41,21 @@ interface Api {
     @GET("toggle/sound")
     fun toggleSound(): Call<Any>
 
+    @GET("noise_start")
+    fun noiseStart(): Call<Any>
+
+    @GET("noise_reuse")
+    fun noiseReuse(): Call<Any>
+
+    @GET("config")
+    fun config(): Call<ConfigJSONData>
+
+    @POST("config")
+    fun updateConfig(@Body config: ConfigJSONData): Call<ConfigJSONData>
+
     @GET("color1/{color}")
-    fun color1(@Path("color") color: String): Call<Any>
+    fun color1(@Path("color") color: String): Call<ConfigJSONData>
 
     @GET("color2/{color}")
-    fun color2(@Path("color") color: String): Call<Any>
+    fun color2(@Path("color") color: String): Call<ConfigJSONData>
 }

@@ -2,7 +2,6 @@ package org.robnetwork.led.ui
 
 import android.content.Context
 import android.util.Log
-import android.widget.Button
 import androidx.core.content.ContextCompat
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
 import org.robnetwork.led.R
@@ -41,6 +40,10 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.equalizer.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         binding.toggleSound.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
         binding.toggleSound.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.noiseStart.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.noiseStart.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.updateConfig.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.updateConfig.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
         data.currentState?.let { state ->
             when (state) {
@@ -66,6 +69,8 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.off.setOnClickListener { viewModel.off() }
         binding.equalizer.setOnClickListener { viewModel.equalizer() }
         binding.toggleSound.setOnClickListener { viewModel.toggleSound() }
+        binding.noiseStart.setOnClickListener { viewModel.noiseStart() }
+        binding.updateConfig.setOnClickListener { viewModel.updateConfig() }
         binding.pickColor1.setOnClickListener {
             ColorPickerDialog.Builder(context)
                 .setPositiveButton("Apply")
@@ -90,5 +95,6 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
                 }
                 .show()
         }
+        viewModel.getConfig()
     }
 }

@@ -72,6 +72,31 @@
             app:layout_constraintTop_toBottomOf="@id/color2" />
 
         <Button
+            android:id="@+id/noiseStart"
+            style="@style/Button"
+            android:text="Noise Acquisition"
+            app:layout_constraintEnd_toStartOf="@id/pickColor2"
+            app:layout_constraintStart_toStartOf="@id/marginStart"
+            app:layout_constraintTop_toBottomOf="@id/pickColor1" />
+
+        <Button
+            android:id="@+id/noiseReuse"
+            style="@style/Button"
+            android:text="Reuse Noise"
+            app:layout_constraintStart_toEndOf="@id/noiseStart"
+            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintTop_toBottomOf="@id/pickColor2" />
+
+        <Button
+            android:id="@+id/updateConfig"
+            style="@style/Button"
+            android:layout_marginBottom="@dimen/size_02"
+            android:text="Update config"
+            app:layout_constraintBottom_toTopOf="@id/toggleSound"
+            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintStart_toStartOf="@id/marginStart" />
+
+        <Button
             android:id="@+id/toggleSound"
             style="@style/Button"
             android:layout_marginBottom="@dimen/size_02"

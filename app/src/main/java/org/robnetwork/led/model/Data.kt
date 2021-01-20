@@ -7,7 +7,8 @@ import org.robnetwork.led.R
 interface BaseData
 
 data class MainData(
-    val currentState: State? = null
+    val currentState: State? = null,
+    val config: ConfigJSONData? = null
 ) : BaseData {
     enum class State(
         val colorButton: (Button) -> Unit
