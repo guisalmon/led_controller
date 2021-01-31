@@ -3,6 +3,7 @@ package org.robnetwork.led.ui
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import org.robnetwork.led.model.ConfigJSONData
+import org.robnetwork.led.model.LevelsJSONData
 import org.robnetwork.led.model.MainData
 import org.robnetwork.led.utils.RetrofitClient
 import retrofit2.Call
@@ -39,6 +40,18 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun updateConfig() = data.value?.config?.let {
         RetrofitClient.api.updateConfig(it).enqueue(ConfigCallback(this))
     } ?: Log.e(this.javaClass.simpleName, "No config")
+    fun getLevels() = RetrofitClient.api.levels().enqueue(LevelsCallback(this))
+
+    private class LevelsCallback(val viewModel: MainViewModel) : Callback<LevelsJSONData> {
+        override fun onFailure(call: Call<LevelsJSONData>, t: Throwable) {
+            Log.e(this.javaClass.simpleName, t.localizedMessage, t)
+        }
+
+        override fun onResponse(call: Call<LevelsJSONData>, response: Response<LevelsJSONData>) {
+            response.body()
+                ?.let { levels -> viewModel.update { data -> data.copy(levels = levels) } }
+        }
+    }
 
     private class ConfigCallback(val viewModel: MainViewModel) : Callback<ConfigJSONData> {
         override fun onFailure(call: Call<ConfigJSONData>, t: Throwable) {

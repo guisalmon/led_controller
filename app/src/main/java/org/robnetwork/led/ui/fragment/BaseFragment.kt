@@ -1,4 +1,4 @@
-package org.robnetwork.led.ui
+package org.robnetwork.led.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.fragment.NavHostFragment
 import org.robnetwork.led.model.BaseData
+import org.robnetwork.led.ui.BaseViewModel
 
 abstract class BaseFragment<B : ViewDataBinding, D : BaseData, VM : BaseViewModel<D>> : Fragment() {
     @get:LayoutRes

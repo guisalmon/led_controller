@@ -6,7 +6,15 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="org.robnetwork.led.ui.MainFragment">
+        android:name="org.robnetwork.led.ui.fragment.MainFragment">
+        <action
+            android:id="@+id/action_main_fragment_to_levels_fragment"
+            app:destination="@id/levels_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/levels_fragment"
+        android:name="org.robnetwork.led.ui.fragment.LevelsFragment">
     </fragment>
 
 </navigation>

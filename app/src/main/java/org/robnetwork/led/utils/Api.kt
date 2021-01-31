@@ -1,6 +1,7 @@
 package org.robnetwork.led.utils
 
 import org.robnetwork.led.model.ConfigJSONData
+import org.robnetwork.led.model.LevelsJSONData
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -58,4 +59,7 @@ interface Api {
 
     @GET("color2/{color}")
     fun color2(@Path("color") color: String): Call<ConfigJSONData>
+
+    @GET("levels/stripes")
+    fun levels(): Call<LevelsJSONData>
 }

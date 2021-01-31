@@ -1,12 +1,15 @@
-package org.robnetwork.led.ui
+package org.robnetwork.led.ui.fragment
 
 import android.content.Context
 import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
 import org.robnetwork.led.R
 import org.robnetwork.led.databinding.FragmentMainBinding
 import org.robnetwork.led.model.MainData
+import org.robnetwork.led.ui.MainActivity
+import org.robnetwork.led.ui.MainViewModel
 
 class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>() {
     override val layoutRes: Int = R.layout.fragment_main
@@ -44,6 +47,8 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.noiseStart.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         binding.updateConfig.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
         binding.updateConfig.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.levels.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.levels.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
         data.currentState?.let { state ->
             when (state) {
@@ -71,6 +76,7 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.toggleSound.setOnClickListener { viewModel.toggleSound() }
         binding.noiseStart.setOnClickListener { viewModel.noiseStart() }
         binding.updateConfig.setOnClickListener { viewModel.updateConfig() }
+        binding.levels.setOnClickListener { findNavController().navigate(R.id.action_main_fragment_to_levels_fragment) }
         binding.pickColor1.setOnClickListener {
             ColorPickerDialog.Builder(context)
                 .setPositiveButton("Apply")

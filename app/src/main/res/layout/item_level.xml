@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/max"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/min_slider"
+            app:layout_constraintEnd_toEndOf="@id/max_slider"
+            tools:text="0.00000"/>
+
+        <TextView
+            android:id="@+id/min"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/min_slider"
+            app:layout_constraintEnd_toEndOf="@id/max_slider"
+            tools:text="0.00000"/>
+
+        <org.robnetwork.led.ui.view.VerticalSlider
+            android:id="@+id/min_slider"
+            android:layout_width="@dimen/size_04"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/max"
+            app:layout_constraintBottom_toTopOf="@id/min"/>
+
+        <org.robnetwork.led.ui.view.VerticalSlider
+            android:id="@+id/max_slider"
+            android:layout_width="@dimen/size_04"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/max"
+            app:layout_constraintBottom_toTopOf="@id/min"/>
+
+        <FrameLayout
+            android:id="@+id/scale"
+            android:layout_width="@dimen/size_08"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@id/min_slider"
+            app:layout_constraintEnd_toStartOf="@id/max_slider"
+            app:layout_constraintTop_toBottomOf="@id/max"
+            app:layout_constraintBottom_toTopOf="@id/min"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

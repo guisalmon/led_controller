@@ -8,7 +8,8 @@ interface BaseData
 
 data class MainData(
     val currentState: State? = null,
-    val config: ConfigJSONData? = null
+    val config: ConfigJSONData? = null,
+    val levels: LevelsJSONData? = null
 ) : BaseData {
     enum class State(
         val colorButton: (Button) -> Unit

@@ -80,9 +80,9 @@
             app:layout_constraintTop_toBottomOf="@id/pickColor1" />
 
         <Button
-            android:id="@+id/noiseReuse"
+            android:id="@+id/levels"
             style="@style/Button"
-            android:text="Reuse Noise"
+            android:text="Levels"
             app:layout_constraintStart_toEndOf="@id/noiseStart"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
             app:layout_constraintTop_toBottomOf="@id/pickColor2" />
