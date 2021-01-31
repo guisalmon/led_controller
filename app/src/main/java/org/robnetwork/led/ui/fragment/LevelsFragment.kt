@@ -4,7 +4,9 @@ import android.content.Context
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import org.robnetwork.led.R
 import org.robnetwork.led.databinding.FragmentLevelsBinding
@@ -12,8 +14,6 @@ import org.robnetwork.led.databinding.ItemLevelBinding
 import org.robnetwork.led.model.MainData
 import org.robnetwork.led.ui.MainActivity
 import org.robnetwork.led.ui.MainViewModel
-import org.robnetwork.led.ui.view.EqBarView
-import kotlin.math.log10
 
 class LevelsFragment: BaseFragment<FragmentLevelsBinding, MainData, MainViewModel>() {
     override val layoutRes: Int = R.layout.fragment_levels
@@ -29,6 +29,7 @@ class LevelsFragment: BaseFragment<FragmentLevelsBinding, MainData, MainViewMode
                 }
             }
 
+            binding.equalizer.removeAllViews()
             for (i in 0..11) {
                 val item = layoutInflater.inflate(R.layout.item_level, null)
                 DataBindingUtil.bind<ItemLevelBinding>(item)?.let { itemBinding ->
@@ -36,7 +37,20 @@ class LevelsFragment: BaseFragment<FragmentLevelsBinding, MainData, MainViewMode
                     itemBinding.min.text = "${revLevels[i].min()}"
                     item.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
                     binding.equalizer.addView(item)
+                    for (lvl in revLevels[i]) {
+                        val stripe = View(context)
+                        stripe.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorPrimaryDark))
+                        stripe.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1)
+                        itemBinding.scale.addView(stripe)
 
+                        revLevels[i].min()?.let { min ->
+                            revLevels[i].max()?.let { max ->
+                                val y = ((lvl - min) / (max - min)) * binding.equalizer.height
+                                Log.e(javaClass.simpleName, "min $min, max $max, y $y, height ${binding.equalizer.height}")
+                                stripe.y = y
+                            }
+                        }
+                    }
                 }
             }
         }
