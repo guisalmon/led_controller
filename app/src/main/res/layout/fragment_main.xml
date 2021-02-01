@@ -75,15 +75,23 @@
             android:id="@+id/noiseStart"
             style="@style/Button"
             android:text="Noise Acquisition"
-            app:layout_constraintEnd_toStartOf="@id/pickColor2"
+            app:layout_constraintEnd_toStartOf="@id/toggleAutoLevels"
             app:layout_constraintStart_toStartOf="@id/marginStart"
+            app:layout_constraintTop_toBottomOf="@id/pickColor1" />
+
+        <Button
+            android:id="@+id/toggleAutoLevels"
+            style="@style/Button"
+            android:text="Toggle auto"
+            app:layout_constraintEnd_toStartOf="@id/levels"
+            app:layout_constraintStart_toEndOf="@id/noiseStart"
             app:layout_constraintTop_toBottomOf="@id/pickColor1" />
 
         <Button
             android:id="@+id/levels"
             style="@style/Button"
             android:text="Levels"
-            app:layout_constraintStart_toEndOf="@id/noiseStart"
+            app:layout_constraintStart_toEndOf="@id/toggleAutoLevels"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
             app:layout_constraintTop_toBottomOf="@id/pickColor2" />
 

@@ -8,7 +8,15 @@ data class LevelsJSONData(
 
     @SerializedName("memSize")
     var memSize: Int
-)
+) {
+    fun reverseLevels() = Array(12) { Array(memSize) { 0f } }.apply {
+        levels.forEachIndexed { index, list ->
+            list.forEachIndexed { column, lvl ->
+                this[column][index] = lvl
+            }
+        }
+    }
+}
 
 data class ConfigJSONData(
     @SerializedName("freqMin")
@@ -36,8 +44,11 @@ data class ConfigJSONData(
     var brightness: Int,
 
     @SerializedName("meanMaxLvls")
-    var meanMaxLvls: List<Float>,
+    var meanMaxLvls: MutableList<Float>,
 
     @SerializedName("meanMinLvls")
-    var meanMinLvls: List<Float>
+    var meanMinLvls: MutableList<Float>,
+
+    @SerializedName("autoMinMax")
+    var autoMinMax: Boolean
 )

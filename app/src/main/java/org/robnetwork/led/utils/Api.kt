@@ -62,4 +62,7 @@ interface Api {
 
     @GET("levels/stripes")
     fun levels(): Call<LevelsJSONData>
+
+    @GET("levels/toggle")
+    fun toggleAutoLevels(): Call<ConfigJSONData>
 }

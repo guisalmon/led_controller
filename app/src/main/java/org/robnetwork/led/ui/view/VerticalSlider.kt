@@ -27,7 +27,7 @@ class VerticalSlider : View {
     private var thumbRadius = 0
     private var trackBgThickness = 0
     private var trackFgThickness = 0
-    private var listener: OnProgressChangeListener? = null
+    private var listener: ((Float) -> Unit)? = null
     private var progress = 0.0f
 
     constructor(context: Context?) : this(context, null)
@@ -140,7 +140,7 @@ class VerticalSlider : View {
         onProgressChanged(progress, notifyListener)
     }
 
-    fun setOnSliderProgressChangeListener(listener: OnProgressChangeListener?) {
+    fun setOnSliderProgressChangeListener(listener: (Float) -> Unit) {
         this.listener = listener
     }
 
@@ -206,7 +206,7 @@ class VerticalSlider : View {
         if (this.progress < 0) this.progress = 0f
         else if (this.progress > 1f) this.progress = 1f
         invalidate()
-        listener?.takeIf { notifyChange }?.onProgress(this.progress)
+        listener?.takeIf { notifyChange }?.invoke(this.progress)
     }
 
     override fun onDraw(canvas: Canvas) {

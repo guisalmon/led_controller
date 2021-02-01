@@ -37,19 +37,27 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun changeColor1(color: String) = RetrofitClient.api.color1(color).enqueue(ConfigCallback(this))
     fun changeColor2(color: String) = RetrofitClient.api.color2(color).enqueue(ConfigCallback(this))
     fun getConfig() = RetrofitClient.api.config().enqueue(ConfigCallback(this))
+    fun toggleAutoLevels() = RetrofitClient.api.toggleAutoLevels().enqueue(ConfigCallback(this))
     fun updateConfig() = data.value?.config?.let {
         RetrofitClient.api.updateConfig(it).enqueue(ConfigCallback(this))
     } ?: Log.e(this.javaClass.simpleName, "No config")
-    fun getLevels() = RetrofitClient.api.levels().enqueue(LevelsCallback(this))
 
-    private class LevelsCallback(val viewModel: MainViewModel) : Callback<LevelsJSONData> {
+    fun getLevels(updateLevels: (LevelsJSONData) -> Unit) =
+        RetrofitClient.api.levels().enqueue(LevelsCallback(this, updateLevels))
+
+    private class LevelsCallback(
+        val viewModel: MainViewModel,
+        val updateLevels: (LevelsJSONData) -> Unit
+    ) : Callback<LevelsJSONData> {
         override fun onFailure(call: Call<LevelsJSONData>, t: Throwable) {
             Log.e(this.javaClass.simpleName, t.localizedMessage, t)
         }
 
         override fun onResponse(call: Call<LevelsJSONData>, response: Response<LevelsJSONData>) {
-            response.body()
-                ?.let { levels -> viewModel.update { data -> data.copy(levels = levels) } }
+            response.body()?.let { levels ->
+                viewModel.update { data -> data.copy(levels = levels) }
+                updateLevels(levels)
+            }
         }
     }
 
