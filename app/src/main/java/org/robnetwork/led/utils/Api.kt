@@ -65,4 +65,13 @@ interface Api {
 
     @GET("levels/toggle")
     fun toggleAutoLevels(): Call<ConfigJSONData>
+
+    @GET("sensibility/+")
+    fun increaseSensibility(): Call<ConfigJSONData>
+
+    @GET("sensibility/reset")
+    fun resetSensibility(): Call<ConfigJSONData>
+
+    @GET("source/toggle")
+    fun toggleSource(): Call<ConfigJSONData>
 }

@@ -51,7 +51,14 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.levels.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         binding.toggleAutoLevels.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
         binding.toggleAutoLevels.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.toggleAutoLevels.setText(if (data.config?.autoMinMax == true) "Auto" else "Manual")
+        binding.toggleAutoLevels.text = if (data.config?.autoMinMax == true) "Auto" else "Manual"
+        binding.increaseSensibility.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.increaseSensibility.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.resetSensibility.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.resetSensibility.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.toggleSource.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.toggleSource.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.toggleSource.text = "${data.config?.source ?: -1}"
 
         data.currentState?.let { state ->
             when (state) {
@@ -81,6 +88,9 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         binding.updateConfig.setOnClickListener { viewModel.updateConfig() }
         binding.levels.setOnClickListener { findNavController().navigate(R.id.action_main_fragment_to_levels_fragment) }
         binding.toggleAutoLevels.setOnClickListener { viewModel.toggleAutoLevels() }
+        binding.increaseSensibility.setOnClickListener { viewModel.increaseSensibility() }
+        binding.resetSensibility.setOnClickListener { viewModel.resetSensibility() }
+        binding.toggleSource.setOnClickListener { viewModel.toggleSource() }
         binding.pickColor1.setOnClickListener {
             ColorPickerDialog.Builder(context)
                 .setPositiveButton("Apply")

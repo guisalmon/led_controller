@@ -50,5 +50,8 @@ data class ConfigJSONData(
     var meanMinLvls: MutableList<Float>,
 
     @SerializedName("autoMinMax")
-    var autoMinMax: Boolean
+    var autoMinMax: Boolean,
+
+    @SerializedName("source")
+    var source: Int
 )

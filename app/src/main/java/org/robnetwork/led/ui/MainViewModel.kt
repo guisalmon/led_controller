@@ -38,6 +38,9 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun changeColor2(color: String) = RetrofitClient.api.color2(color).enqueue(ConfigCallback(this))
     fun getConfig() = RetrofitClient.api.config().enqueue(ConfigCallback(this))
     fun toggleAutoLevels() = RetrofitClient.api.toggleAutoLevels().enqueue(ConfigCallback(this))
+    fun increaseSensibility() = RetrofitClient.api.increaseSensibility().enqueue(ConfigCallback(this))
+    fun resetSensibility() = RetrofitClient.api.resetSensibility().enqueue(ConfigCallback(this))
+    fun toggleSource() = RetrofitClient.api.toggleSource().enqueue(ConfigCallback(this))
     fun updateConfig() = data.value?.config?.let {
         RetrofitClient.api.updateConfig(it).enqueue(ConfigCallback(this))
     } ?: Log.e(this.javaClass.simpleName, "No config")

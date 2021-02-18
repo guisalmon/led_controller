@@ -110,16 +110,33 @@
             android:layout_marginBottom="@dimen/size_02"
             android:text="Toggle sound"
             app:layout_constraintBottom_toTopOf="@id/on"
-            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintEnd_toStartOf="@id/toggleSource"
             app:layout_constraintStart_toStartOf="@id/marginStart" />
+
+        <Button
+            android:id="@+id/toggleSource"
+            style="@style/Button"
+            android:layout_marginBottom="@dimen/size_02"
+            android:text="Toggle source"
+            app:layout_constraintBottom_toTopOf="@id/off"
+            app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintStart_toEndOf="@id/toggleSound" />
 
         <Button
             android:id="@+id/on"
             style="@style/Button"
             android:text="On"
             app:layout_constraintBottom_toTopOf="@id/moreLight"
-            app:layout_constraintEnd_toStartOf="@id/off"
+            app:layout_constraintEnd_toStartOf="@id/resetSensibility"
             app:layout_constraintStart_toStartOf="@id/marginStart" />
+
+        <Button
+            android:id="@+id/resetSensibility"
+            style="@style/Button"
+            android:text="reset"
+            app:layout_constraintBottom_toTopOf="@id/increaseSensibility"
+            app:layout_constraintStart_toEndOf="@id/on"
+            app:layout_constraintEnd_toStartOf="@id/off" />
 
         <Button
             android:id="@+id/off"
@@ -127,15 +144,23 @@
             android:text="Off"
             app:layout_constraintBottom_toTopOf="@id/lessLight"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toEndOf="@id/gradient" />
+            app:layout_constraintStart_toEndOf="@id/resetSensibility" />
 
         <Button
             android:id="@+id/moreLight"
             style="@style/Button"
             android:text="+"
             app:layout_constraintBottom_toBottomOf="@id/marginBottom"
-            app:layout_constraintEnd_toStartOf="@id/lessLight"
+            app:layout_constraintEnd_toStartOf="@id/increaseSensibility"
             app:layout_constraintStart_toStartOf="@id/marginStart" />
+
+        <Button
+            android:id="@+id/increaseSensibility"
+            style="@style/Button"
+            android:text="sensibility"
+            app:layout_constraintBottom_toBottomOf="@id/marginBottom"
+            app:layout_constraintStart_toEndOf="@id/moreLight"
+            app:layout_constraintEnd_toStartOf="@id/lessLight" />
 
         <Button
             android:id="@+id/lessLight"
@@ -143,7 +168,7 @@
             android:text="-"
             app:layout_constraintBottom_toBottomOf="@id/marginBottom"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toEndOf="@id/gradient" />
+            app:layout_constraintStart_toEndOf="@id/increaseSensibility" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/marginStart"
