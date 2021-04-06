@@ -22,11 +22,6 @@ class EqualizerTileService : AbstractTileService() {
         qsTile.updateTile()
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
-        RetrofitClient.api.config().enqueue(ConfigCallback(this))
-        return super.onBind(intent)
-    }
-
     override fun onClick() {
         super.onClick()
         if (configLive.value?.on == true) {
@@ -39,6 +34,7 @@ class EqualizerTileService : AbstractTileService() {
     override fun onStartListening() {
         super.onStartListening()
         configLive.observeForever(configObserver)
+        RetrofitClient.api.config().enqueue(ConfigCallback(this))
     }
 
     override fun onStopListening() {
