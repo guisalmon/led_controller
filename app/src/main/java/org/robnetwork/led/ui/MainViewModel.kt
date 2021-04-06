@@ -41,6 +41,8 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun increaseSensibility() = RetrofitClient.api.increaseSensibility().enqueue(ConfigCallback(this))
     fun resetSensibility() = RetrofitClient.api.resetSensibility().enqueue(ConfigCallback(this))
     fun toggleSource() = RetrofitClient.api.toggleSource().enqueue(ConfigCallback(this))
+    fun ambientOn() = RetrofitClient.api.ambientOn().enqueue(ConfigCallback(this))
+    fun ambientOff() = RetrofitClient.api.ambientOff().enqueue(ConfigCallback(this))
     fun updateConfig() = data.value?.config?.let {
         RetrofitClient.api.updateConfig(it).enqueue(ConfigCallback(this))
     } ?: Log.e(this.javaClass.simpleName, "No config")

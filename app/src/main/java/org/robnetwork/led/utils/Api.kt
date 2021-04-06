@@ -74,4 +74,10 @@ interface Api {
 
     @GET("source/toggle")
     fun toggleSource(): Call<ConfigJSONData>
+
+    @GET("ambient/on")
+    fun ambientOn(): Call<ConfigJSONData>
+
+    @GET("ambient/off")
+    fun ambientOff(): Call<ConfigJSONData>
 }

@@ -19,8 +19,10 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
     override fun updateUI(binding: FragmentMainBinding, data: MainData) {
         binding.dark.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
         binding.dark.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.white.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.white.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.whiteOn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.whiteOn.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.whiteOff.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+        binding.whiteOff.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         binding.gradient.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
         binding.gradient.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         binding.color1.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
@@ -63,7 +65,7 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
         data.currentState?.let { state ->
             when (state) {
                 MainData.State.DARK -> state.colorButton(binding.dark)
-                MainData.State.WHITE -> state.colorButton(binding.white)
+                MainData.State.WHITE -> state.colorButton(binding.whiteOn)
                 MainData.State.GRADIENT -> state.colorButton(binding.gradient)
                 MainData.State.COLOR1 -> state.colorButton(binding.color1)
                 MainData.State.COLOR2 -> state.colorButton(binding.color2)
@@ -74,7 +76,8 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
     override fun setupUI(binding: FragmentMainBinding, context: Context) {
         super.setupUI(binding, context)
         binding.dark.setOnClickListener { viewModel.dark() }
-        binding.white.setOnClickListener { viewModel.white() }
+        binding.whiteOn.setOnClickListener { viewModel.ambientOn() }
+        binding.whiteOff.setOnClickListener { viewModel.ambientOff() }
         binding.gradient.setOnClickListener { viewModel.gradient() }
         binding.color1.setOnClickListener { viewModel.color1() }
         binding.color2.setOnClickListener { viewModel.color2() }
