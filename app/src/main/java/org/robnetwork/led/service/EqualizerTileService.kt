@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import android.service.quicksettings.Tile
-import android.service.quicksettings.TileService
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 @RequiresApi(Build.VERSION_CODES.N)
-class EqualizerTileService : TileService() {
+class EqualizerTileService : AbstractTileService() {
     private val configLive: MutableLiveData<ConfigJSONData> = MutableLiveData()
     private val configObserver: Observer<ConfigJSONData> = Observer {
         qsTile.state = if (it.on) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
