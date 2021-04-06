@@ -47,14 +47,6 @@ class EqualizerTileService : TileService() {
         configLive.removeObserver(configObserver)
     }
 
-    private class EmptyCallback : Callback<Any> {
-        override fun onFailure(call: Call<Any>, t: Throwable) {
-            Log.e(this.javaClass.simpleName, t.localizedMessage, t)
-        }
-
-        override fun onResponse(call: Call<Any>, response: Response<Any>) {}
-    }
-
     private class ConfigCallback(val service: EqualizerTileService) : Callback<ConfigJSONData> {
         override fun onFailure(call: Call<ConfigJSONData>, t: Throwable) {
             Log.e(this.javaClass.simpleName, t.localizedMessage, t)
