@@ -80,4 +80,10 @@ interface Api {
 
     @GET("ambient/off")
     fun ambientOff(): Call<ConfigJSONData>
+
+    @GET("eq/on")
+    fun eqOn(): Call<ConfigJSONData>
+
+    @GET("eq/off")
+    fun eqOff(): Call<ConfigJSONData>
 }

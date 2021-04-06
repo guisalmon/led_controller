@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LED</string>
+    <string name="quick_setting_label">Equalizer</string>
+    <string name="toggle_sound_label">Sound System</string>
 </resources>

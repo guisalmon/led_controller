@@ -53,5 +53,8 @@ data class ConfigJSONData(
     var autoMinMax: Boolean,
 
     @SerializedName("source")
-    var source: Int
+    var source: Int,
+
+    @SerializedName("on")
+    var on: Boolean
 )
