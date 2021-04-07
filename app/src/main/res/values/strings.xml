@@ -2,4 +2,12 @@
     <string name="app_name">LED</string>
     <string name="quick_setting_label">Equalizer</string>
     <string name="toggle_sound_label">Sound System</string>
+    <string name="power">Power</string>
+    <string name="sound">Toggle Sound</string>
+    <string name="sensibility_label">Sensibility</string>
+    <string name="sensibility_auto">Auto</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="sensibility_adjust">Adjust</string>
+    <string name="brightness_label">Brightness</string>
 </resources>

@@ -7,69 +7,12 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/whiteOn"
-            style="@style/Button"
-            android:text="on"
-            app:layout_constraintEnd_toStartOf="@id/whiteOff"
-            app:layout_constraintStart_toStartOf="@id/marginStart"
-            app:layout_constraintTop_toTopOf="@id/marginTop" />
-
-        <Button
-            android:id="@+id/whiteOff"
-            style="@style/Button"
-            android:text="off"
-            app:layout_constraintStart_toEndOf="@id/whiteOn"
-            app:layout_constraintEnd_toStartOf="@id/equalizer"
-            app:layout_constraintTop_toTopOf="@id/marginTop" />
-
-        <Button
-            android:id="@+id/dark"
-            style="@style/Button"
-            android:text="Off"
-            app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toEndOf="@id/whiteOff"
-            app:layout_constraintTop_toTopOf="@id/marginTop" />
-
-        <Button
-            android:id="@+id/gradient"
-            style="@style/Button"
-            android:text="Gradient"
-            app:layout_constraintEnd_toStartOf="@id/equalizer"
-            app:layout_constraintStart_toStartOf="@id/marginStart"
-            app:layout_constraintTop_toBottomOf="@id/whiteOn" />
-
-        <Button
-            android:id="@+id/equalizer"
-            style="@style/Button"
-            android:text="Equalizer"
-            app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toEndOf="@id/gradient"
-            app:layout_constraintTop_toBottomOf="@id/dark" />
-
-
-        <Button
-            android:id="@+id/color1"
-            style="@style/Button"
-            android:text="Color 1"
-            app:layout_constraintEnd_toEndOf="@id/gradient"
-            app:layout_constraintStart_toStartOf="@id/marginStart"
-            app:layout_constraintTop_toBottomOf="@id/gradient" />
-
-        <Button
-            android:id="@+id/color2"
-            style="@style/Button"
-            android:text="Color 2"
-            app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toEndOf="@id/color1"
-            app:layout_constraintTop_toBottomOf="@id/gradient" />
-
-        <Button
             android:id="@+id/pickColor1"
             style="@style/Button"
             android:text="Select Color 1"
             app:layout_constraintEnd_toStartOf="@id/pickColor2"
             app:layout_constraintStart_toStartOf="@id/marginStart"
-            app:layout_constraintTop_toBottomOf="@id/color2" />
+            app:layout_constraintTop_toBottomOf="@id/marginTop" />
 
         <Button
             android:id="@+id/pickColor2"
@@ -77,106 +20,139 @@
             android:text="Select Color 2"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
             app:layout_constraintStart_toEndOf="@id/pickColor1"
-            app:layout_constraintTop_toBottomOf="@id/color2" />
+            app:layout_constraintTop_toBottomOf="@id/marginTop" />
 
         <Button
-            android:id="@+id/noiseStart"
+            android:id="@+id/color1"
             style="@style/Button"
-            android:text="Noise Acquisition"
-            app:layout_constraintEnd_toStartOf="@id/toggleAutoLevels"
+            android:text="Color 1"
+            app:layout_constraintEnd_toStartOf="@id/dark"
             app:layout_constraintStart_toStartOf="@id/marginStart"
             app:layout_constraintTop_toBottomOf="@id/pickColor1" />
 
         <Button
-            android:id="@+id/toggleAutoLevels"
+            android:id="@+id/dark"
             style="@style/Button"
-            android:text="Toggle auto"
-            app:layout_constraintEnd_toStartOf="@id/levels"
-            app:layout_constraintStart_toEndOf="@id/noiseStart"
+            android:text="Off"
+            app:layout_constraintEnd_toStartOf="@id/color2"
+            app:layout_constraintStart_toEndOf="@id/color1"
             app:layout_constraintTop_toBottomOf="@id/pickColor1" />
 
         <Button
-            android:id="@+id/levels"
+            android:id="@+id/color2"
             style="@style/Button"
-            android:text="Levels"
-            app:layout_constraintStart_toEndOf="@id/toggleAutoLevels"
+            android:text="Color 2"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
+            app:layout_constraintStart_toEndOf="@id/dark"
             app:layout_constraintTop_toBottomOf="@id/pickColor2" />
 
         <Button
-            android:id="@+id/updateConfig"
+            android:id="@+id/gradient"
             style="@style/Button"
-            android:layout_marginBottom="@dimen/size_02"
-            android:text="Update config"
-            app:layout_constraintBottom_toTopOf="@id/toggleSound"
+            android:text="Gradient"
+            app:layout_constraintEnd_toStartOf="@id/equalizer"
+            app:layout_constraintStart_toStartOf="@id/marginStart"
+            app:layout_constraintTop_toBottomOf="@id/color1" />
+
+        <Button
+            android:id="@+id/equalizer"
+            style="@style/Button"
+            android:text="Equalizer"
+            app:layout_constraintEnd_toStartOf="@id/ambient"
+            app:layout_constraintStart_toEndOf="@id/gradient"
+            app:layout_constraintTop_toBottomOf="@id/dark" />
+
+        <Button
+            android:id="@+id/ambient"
+            style="@style/Button"
+            android:text="on"
+            app:layout_constraintStart_toEndOf="@id/equalizer"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toStartOf="@id/marginStart" />
+            app:layout_constraintTop_toBottomOf="@id/color2" />
+
+        <TextView
+            android:id="@+id/sensibility_label"
+            android:text="@string/sensibility_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/gradient"
+            app:layout_constraintStart_toStartOf="@id/marginStart"
+            app:layout_constraintBottom_toBottomOf="@id/sensibility_auto"/>
+
+        <CheckBox
+            android:id="@+id/sensibility_auto"
+            android:text="@string/sensibility_auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/ambient"
+            app:layout_constraintEnd_toStartOf="@id/marginEnd"/>
 
         <Button
-            android:id="@+id/toggleSound"
-            style="@style/Button"
-            android:layout_marginBottom="@dimen/size_02"
-            android:text="Toggle sound"
-            app:layout_constraintBottom_toTopOf="@id/on"
-            app:layout_constraintEnd_toStartOf="@id/toggleSource"
-            app:layout_constraintStart_toStartOf="@id/marginStart" />
+            android:id="@+id/sensibility_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus"
+            app:layout_constraintTop_toBottomOf="@+id/sensibility_auto"
+            app:layout_constraintStart_toEndOf="@id/marginStart"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sensibility_adjust"
+            app:layout_constraintStart_toEndOf="@id/sensibility_minus"
+            app:layout_constraintEnd_toStartOf="@id/sensibility_plus"
+            app:layout_constraintTop_toBottomOf="@id/sensibility_auto"
+            app:layout_constraintBottom_toBottomOf="@id/sensibility_plus"/>
 
         <Button
-            android:id="@+id/toggleSource"
-            style="@style/Button"
-            android:layout_marginBottom="@dimen/size_02"
-            android:text="Toggle source"
-            app:layout_constraintBottom_toTopOf="@id/off"
-            app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toEndOf="@id/toggleSound" />
+            android:id="@+id/sensibility_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            app:layout_constraintTop_toBottomOf="@+id/sensibility_auto"
+            app:layout_constraintEnd_toStartOf="@id/marginEnd"/>
+
+        <TextView
+            android:id="@+id/brightness_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/brightness_label"
+            app:layout_constraintStart_toStartOf="@id/marginStart"
+            app:layout_constraintTop_toBottomOf="@id/sensibility_minus"/>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/brightness_slider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/marginStart"
+            app:layout_constraintEnd_toStartOf="@id/marginEnd"
+            app:layout_constraintTop_toBottomOf="@id/brightness_label"/>
 
         <Button
-            android:id="@+id/on"
-            style="@style/Button"
-            android:text="On"
-            app:layout_constraintBottom_toTopOf="@id/moreLight"
-            app:layout_constraintEnd_toStartOf="@id/resetSensibility"
-            app:layout_constraintStart_toStartOf="@id/marginStart" />
+            android:id="@+id/brightness_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus"
+            app:layout_constraintTop_toBottomOf="@+id/brightness_slider"
+            app:layout_constraintStart_toEndOf="@id/marginStart"/>
+
+        <TextView
+            android:id="@+id/brightness_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@id/brightness_minus"
+            app:layout_constraintEnd_toStartOf="@id/brightness_plus"
+            app:layout_constraintTop_toBottomOf="@id/brightness_slider"
+            app:layout_constraintBottom_toBottomOf="@id/brightness_plus"/>
 
         <Button
-            android:id="@+id/resetSensibility"
-            style="@style/Button"
-            android:text="reset"
-            app:layout_constraintBottom_toTopOf="@id/increaseSensibility"
-            app:layout_constraintStart_toEndOf="@id/on"
-            app:layout_constraintEnd_toStartOf="@id/off" />
-
-        <Button
-            android:id="@+id/off"
-            style="@style/Button"
-            android:text="Off"
-            app:layout_constraintBottom_toTopOf="@id/lessLight"
-            app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toEndOf="@id/resetSensibility" />
-
-        <Button
-            android:id="@+id/moreLight"
-            style="@style/Button"
-            android:text="+"
-            app:layout_constraintBottom_toBottomOf="@id/marginBottom"
-            app:layout_constraintEnd_toStartOf="@id/increaseSensibility"
-            app:layout_constraintStart_toStartOf="@id/marginStart" />
-
-        <Button
-            android:id="@+id/increaseSensibility"
-            style="@style/Button"
-            android:text="sensibility"
-            app:layout_constraintBottom_toBottomOf="@id/marginBottom"
-            app:layout_constraintStart_toEndOf="@id/moreLight"
-            app:layout_constraintEnd_toStartOf="@id/lessLight" />
-
-        <Button
-            android:id="@+id/lessLight"
-            style="@style/Button"
-            android:text="-"
-            app:layout_constraintBottom_toBottomOf="@id/marginBottom"
-            app:layout_constraintEnd_toEndOf="@id/marginEnd"
-            app:layout_constraintStart_toEndOf="@id/increaseSensibility" />
+            android:id="@+id/brightness_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            app:layout_constraintTop_toBottomOf="@+id/brightness_slider"
+            app:layout_constraintEnd_toStartOf="@id/marginEnd"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/marginStart"

@@ -10,6 +10,6 @@ class MainActivity: BaseActivity<ActivityMainBinding, MainData, MainViewModel>()
     override val viewModelClass = MainViewModel::class.java
 
     override fun updateUI(binding: ActivityMainBinding, data: MainData) {
-        binding.toolbar.toolbarSave.setOnClickListener { viewModel.updateConfig() }
+
     }
 }
