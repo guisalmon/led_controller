@@ -1,9 +1,8 @@
 package org.robnetwork.led.ui.fragment
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
-import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
 import org.robnetwork.led.R
 import org.robnetwork.led.databinding.FragmentMainBinding
@@ -11,96 +10,61 @@ import org.robnetwork.led.model.MainData
 import org.robnetwork.led.ui.MainActivity
 import org.robnetwork.led.ui.MainViewModel
 
-class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>() {
+class MainFragment : BaseFragment<FragmentMainBinding, MainData, MainViewModel>() {
     override val layoutRes: Int = R.layout.fragment_main
     override val viewModelClass = MainViewModel::class.java
     override fun getModelStoreOwner() = activity as? MainActivity
 
     override fun updateUI(binding: FragmentMainBinding, data: MainData) {
-        binding.dark.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.dark.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.whiteOn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.whiteOn.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.whiteOff.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.whiteOff.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.gradient.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.gradient.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.color1.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.color1.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.color2.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.color2.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.pickColor1.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.pickColor1.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.pickColor2.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.pickColor2.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.moreLight.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.moreLight.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.lessLight.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.lessLight.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.on.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.on.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.off.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.off.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.equalizer.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.equalizer.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.toggleSound.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.toggleSound.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.noiseStart.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.noiseStart.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.updateConfig.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.updateConfig.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.levels.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.levels.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.toggleAutoLevels.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.toggleAutoLevels.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.toggleAutoLevels.text = if (data.config?.autoMinMax == true) "Auto" else "Manual"
-        binding.increaseSensibility.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.increaseSensibility.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.resetSensibility.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.resetSensibility.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.toggleSource.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
-        binding.toggleSource.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-        binding.toggleSource.text = "${data.config?.source ?: -1}"
+        data.config?.let { config ->
+            binding.pickColor1.text = config.color1
+            binding.pickColor1.setBackgroundColor(Color.parseColor(config.color1))
+            binding.pickColor2.text = config.color2
+            binding.pickColor2.setBackgroundColor(Color.parseColor(config.color2))
+            binding.ambient.setOnClickListener {
+                if (config.ambient) viewModel.ambientOff() else viewModel.ambientOn()
+            }
+        }
+        data.currentState?.let {
+            binding.color1.isChecked = false
+            binding.color2.isChecked = false
+            binding.dark.isChecked = false
+            binding.gradient.isChecked = false
+            binding.equalizer.isChecked = false
 
-        data.currentState?.let { state ->
-            when (state) {
-                MainData.State.DARK -> state.colorButton(binding.dark)
-                MainData.State.WHITE -> state.colorButton(binding.whiteOn)
-                MainData.State.GRADIENT -> state.colorButton(binding.gradient)
-                MainData.State.COLOR1 -> state.colorButton(binding.color1)
-                MainData.State.COLOR2 -> state.colorButton(binding.color2)
+            when(it) {
+                MainData.State.DARK -> binding.dark.isChecked = true
+                MainData.State.GRADIENT -> binding.gradient.isChecked = true
+                MainData.State.COLOR1 -> binding.color1.isChecked = true
+                MainData.State.COLOR2 -> binding.color2.isChecked = true
+                MainData.State.EQUALIZER -> binding.equalizer.isChecked = true
             }
         }
     }
 
     override fun setupUI(binding: FragmentMainBinding, context: Context) {
         super.setupUI(binding, context)
+        viewModel.data.value?.config?.let { config ->
+            binding.sensibilityAuto.isChecked = config.autoMinMax
+        }
         binding.dark.setOnClickListener { viewModel.dark() }
-        binding.whiteOn.setOnClickListener { viewModel.ambientOn() }
-        binding.whiteOff.setOnClickListener { viewModel.ambientOff() }
         binding.gradient.setOnClickListener { viewModel.gradient() }
         binding.color1.setOnClickListener { viewModel.color1() }
         binding.color2.setOnClickListener { viewModel.color2() }
-        binding.moreLight.setOnClickListener { viewModel.moreLight() }
-        binding.lessLight.setOnClickListener { viewModel.lessLight() }
-        binding.on.setOnClickListener { viewModel.on() }
-        binding.off.setOnClickListener { viewModel.off() }
+        binding.brightnessPlus.setOnClickListener { viewModel.moreLight() }
+        binding.brightnessMinus.setOnClickListener { viewModel.lessLight() }
         binding.equalizer.setOnClickListener { viewModel.equalizer() }
-        binding.toggleSound.setOnClickListener { viewModel.toggleSound() }
-        binding.noiseStart.setOnClickListener { viewModel.noiseStart() }
-        binding.updateConfig.setOnClickListener { viewModel.updateConfig() }
-        binding.levels.setOnClickListener { findNavController().navigate(R.id.action_main_fragment_to_levels_fragment) }
-        binding.toggleAutoLevels.setOnClickListener { viewModel.toggleAutoLevels() }
-        binding.increaseSensibility.setOnClickListener { viewModel.increaseSensibility() }
-        binding.resetSensibility.setOnClickListener { viewModel.resetSensibility() }
-        binding.toggleSource.setOnClickListener { viewModel.toggleSource() }
+        binding.sensibilityAuto.setOnCheckedChangeListener { _, _ ->
+            viewModel.toggleAutoLevels() }
+        binding.sensibilityPlus.setOnClickListener { viewModel.increaseSensibility() }
+        binding.sensibilityMinus.setOnClickListener { viewModel.resetSensibility() }
         binding.pickColor1.setOnClickListener {
             ColorPickerDialog.Builder(context)
                 .setPositiveButton("Apply")
                 .setNegativeButton("Cancel")
                 .setColorListener { i, s ->
-                    binding.color1.text = s
-                    binding.color1.setBackgroundColor(i)
+                    binding.pickColor1.text = s
+                    binding.pickColor1.setBackgroundColor(i)
                     Log.d(javaClass.simpleName, "Color : $i")
                     viewModel.changeColor1(s)
                 }
@@ -111,8 +75,8 @@ class MainFragment: BaseFragment<FragmentMainBinding, MainData, MainViewModel>()
                 .setPositiveButton("Apply")
                 .setNegativeButton("Cancel")
                 .setColorListener { i, s ->
-                    binding.color2.text = s
-                    binding.color2.setBackgroundColor(i)
+                    binding.pickColor2.text = s
+                    binding.pickColor2.setBackgroundColor(i)
                     Log.d(javaClass.simpleName, "Color : $i")
                     viewModel.changeColor2(s)
                 }

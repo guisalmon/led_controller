@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/round_button_bg"
+        android:height="@dimen/size_07"
+        android:width="@dimen/size_07"/>
+    <item android:drawable="@drawable/equalizer"
+        android:gravity="center"
+        android:height="@dimen/size_03"
+        android:width="@dimen/size_03"/>
+</layer-list>

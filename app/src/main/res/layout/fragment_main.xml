@@ -10,6 +10,7 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:id="@+id/pickColor1"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@id/pickColor2"
             app:layout_constraintStart_toStartOf="@id/marginStart"
             app:layout_constraintTop_toBottomOf="@id/marginTop"/>
@@ -18,71 +19,60 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:id="@+id/pickColor2"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
             app:layout_constraintStart_toEndOf="@id/pickColor1"
             app:layout_constraintTop_toBottomOf="@id/marginTop" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ToggleButton
             android:id="@+id/color1"
-            style="@style/Button"
-            android:src="@drawable/water"
-            android:tint="@color/white"
-            android:background="@drawable/round_button_bg"
+            style="@style/Button.Checkable"
+            android:background="@drawable/toggle_color1"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/dark"
             app:layout_constraintStart_toStartOf="@id/marginStart"
             app:layout_constraintTop_toBottomOf="@id/pickColor1" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ToggleButton
             android:id="@+id/dark"
-            style="@style/Button"
-            android:src="@drawable/water_off"
-            android:tint="@color/white"
-            android:background="@drawable/round_button_bg"
+            style="@style/Button.Checkable"
+            android:background="@drawable/toggle_dark"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/color2"
             app:layout_constraintStart_toEndOf="@id/color1"
             app:layout_constraintTop_toBottomOf="@id/pickColor1" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ToggleButton
             android:id="@+id/color2"
-            style="@style/Button"
-            android:src="@drawable/water_outline"
-            android:tint="@color/white"
-            android:background="@drawable/round_button_bg"
+            style="@style/Button.Checkable"
+            android:background="@drawable/toggle_color2"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"
             app:layout_constraintStart_toEndOf="@id/dark"
             app:layout_constraintTop_toBottomOf="@id/pickColor2" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ToggleButton
             android:id="@+id/gradient"
-            style="@style/Button"
-            android:src="@drawable/gradient_vertical"
-            android:tint="@color/white"
-            android:background="@drawable/round_button_bg"
+            style="@style/Button.Checkable"
+            android:background="@drawable/toggle_gradient"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/equalizer"
             app:layout_constraintStart_toStartOf="@id/marginStart"
             app:layout_constraintTop_toBottomOf="@id/color1" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ToggleButton
             android:id="@+id/equalizer"
-            style="@style/Button"
-            android:src="@drawable/equalizer"
-            android:tint="@color/white"
-            android:background="@drawable/round_button_bg"
+            style="@style/Button.Checkable"
+            android:background="@drawable/toggle_equalizer"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/ambient"
             app:layout_constraintStart_toEndOf="@id/gradient"
             app:layout_constraintTop_toBottomOf="@id/dark" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
+        <ToggleButton
             android:id="@+id/ambient"
-            style="@style/Button"
-            android:src="@drawable/lightbulb_on"
-            android:tint="@color/white"
-            android:background="@drawable/round_button_bg"
+            style="@style/Button.Checkable"
+            android:background="@drawable/toggle_ambient"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toEndOf="@id/equalizer"
             app:layout_constraintEnd_toEndOf="@id/marginEnd"

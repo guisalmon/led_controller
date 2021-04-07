@@ -15,9 +15,6 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun dark() = RetrofitClient.api.dark()
         .enqueue(StateCallback { update { it.copy(currentState = MainData.State.DARK) } })
 
-    fun white() = RetrofitClient.api.white()
-        .enqueue(StateCallback { update { it.copy(currentState = MainData.State.WHITE) } })
-
     fun gradient() = RetrofitClient.api.gradient()
         .enqueue(StateCallback { update { it.copy(currentState = MainData.State.GRADIENT) } })
 
@@ -27,7 +24,9 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun color2() = RetrofitClient.api.color2()
         .enqueue(StateCallback { update { it.copy(currentState = MainData.State.COLOR2) } })
 
-    fun equalizer() = RetrofitClient.api.equalizer().enqueue(StateCallback { })
+    fun equalizer() = RetrofitClient.api.equalizer()
+        .enqueue(StateCallback { update { it.copy(currentState = MainData.State.EQUALIZER) } })
+
     fun on() = RetrofitClient.api.on().enqueue(StateCallback { })
     fun off() = RetrofitClient.api.off().enqueue(StateCallback { })
     fun toggleSound() = RetrofitClient.api.toggleSound().enqueue(StateCallback { })

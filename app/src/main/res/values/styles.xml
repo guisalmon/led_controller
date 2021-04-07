@@ -8,4 +8,12 @@
         <item name="textAllCaps">false</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+    <style name="Button.Checkable">
+        <item name="android:checkable">true</item>
+        <item name="android:height">@dimen/size_07</item>
+        <item name="android:tint">@color/white</item>
+        <item name="android:textOn"> </item>
+        <item name="android:textOff"> </item>
+    </style>
 </resources>

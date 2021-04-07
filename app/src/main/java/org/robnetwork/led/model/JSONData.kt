@@ -56,5 +56,8 @@ data class ConfigJSONData(
     var source: Int,
 
     @SerializedName("on")
-    var on: Boolean
+    var on: Boolean,
+
+    @SerializedName("ambient")
+    var ambient: Boolean
 )

@@ -11,35 +11,12 @@ data class MainData(
     val config: ConfigJSONData? = null,
     val levels: LevelsJSONData? = null
 ) : BaseData {
-    enum class State(
-        val colorButton: (Button) -> Unit
-    ) {
-        DARK({ button ->
-            button.setTextColor(ContextCompat.getColor(button.context, R.color.white))
-            button.setBackgroundColor(ContextCompat.getColor(button.context, R.color.black))
-        }),
-        WHITE({ button ->
-            button.setTextColor(ContextCompat.getColor(button.context, R.color.black))
-            button.setBackgroundColor(ContextCompat.getColor(button.context, R.color.white))
-        }),
-        GRADIENT({ button ->
-            button.setTextColor(ContextCompat.getColor(button.context, R.color.white))
-            button.background =
-                ContextCompat.getDrawable(button.context, R.drawable.gradient_color1_color2)
-        }),
-        COLOR1({ button ->
-            button.setTextColor(ContextCompat.getColor(button.context, R.color.white))
-            button.setBackgroundColor(
-                ContextCompat.getColor(
-                    button.context,
-                    R.color.colorPrimaryDark
-                )
-            )
-        }),
-        COLOR2({ button ->
-            button.setTextColor(ContextCompat.getColor(button.context, R.color.black))
-            button.setBackgroundColor(ContextCompat.getColor(button.context, R.color.colorAccent))
-        })
+    enum class State {
+        DARK,
+        GRADIENT,
+        COLOR1,
+        COLOR2,
+        EQUALIZER
     }
 
 }
