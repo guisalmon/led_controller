@@ -36,7 +36,9 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun changeColor2(color: String) = RetrofitClient.api.color2(color).enqueue(ConfigCallback(this))
     fun getConfig() = RetrofitClient.api.config().enqueue(ConfigCallback(this))
     fun toggleAutoLevels() = RetrofitClient.api.toggleAutoLevels().enqueue(ConfigCallback(this))
-    fun increaseSensibility() = RetrofitClient.api.increaseSensibility().enqueue(ConfigCallback(this))
+    fun increaseSensibility() =
+        RetrofitClient.api.increaseSensibility().enqueue(ConfigCallback(this))
+
     fun resetSensibility() = RetrofitClient.api.resetSensibility().enqueue(ConfigCallback(this))
     fun ambientOn() = RetrofitClient.api.ambientOn().enqueue(ConfigCallback(this))
     fun ambientOff() = RetrofitClient.api.ambientOff().enqueue(ConfigCallback(this))
@@ -63,13 +65,20 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     private class ConfigCallback(val viewModel: MainViewModel) : Callback<ConfigJSONData> {
         override fun onFailure(call: Call<ConfigJSONData>, t: Throwable) {
             Log.e(this.javaClass.simpleName, t.localizedMessage, t)
+            viewModel.update { data -> data.copy(connexionStatus = MainData.ConnexionStatus.UNREACHABLE) }
         }
 
         override fun onResponse(call: Call<ConfigJSONData>, response: Response<ConfigJSONData>) {
             response.body()
                 ?.let { config ->
                     Log.i(javaClass.simpleName, config.toString())
-                    viewModel.update { data -> data.copy(config = config) }
+                    viewModel.update { data ->
+                        data.copy(
+                            config = config,
+                            connexionStatus = if (config.on) MainData.ConnexionStatus.ON
+                            else MainData.ConnexionStatus.OFF
+                        )
+                    }
                 }
         }
     }

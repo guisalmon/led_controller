@@ -1,12 +1,9 @@
 package org.robnetwork.led.model
 
-import android.widget.Button
-import androidx.core.content.ContextCompat
-import org.robnetwork.led.R
-
 interface BaseData
 
 data class MainData(
+    val connexionStatus: ConnexionStatus = ConnexionStatus.OFF,
     val currentState: State? = null,
     val config: ConfigJSONData? = null,
     val levels: LevelsJSONData? = null
@@ -19,4 +16,9 @@ data class MainData(
         EQUALIZER
     }
 
+    enum class ConnexionStatus {
+        UNREACHABLE,
+        OFF,
+        ON
+    }
 }

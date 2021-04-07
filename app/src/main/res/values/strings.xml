@@ -10,4 +10,6 @@
     <string name="minus">-</string>
     <string name="sensibility_adjust">Adjust</string>
     <string name="brightness_label">Brightness</string>
+    <string name="server_down">Server unreachable</string>
+    <string name="equalizer_offline">LEDs powered down</string>
 </resources>
