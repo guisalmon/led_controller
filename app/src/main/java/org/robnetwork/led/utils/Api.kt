@@ -34,10 +34,10 @@ interface Api {
     fun lessLight(): Call<ConfigJSONData>
 
     @GET("power/on")
-    fun on(): Call<Any>
+    fun on(): Call<ConfigJSONData>
 
     @GET("power/off")
-    fun off(): Call<Any>
+    fun off(): Call<ConfigJSONData>
 
     @GET("toggle/sound")
     fun toggleSound(): Call<Any>

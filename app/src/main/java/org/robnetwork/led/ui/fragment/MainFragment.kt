@@ -18,9 +18,10 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainData, MainViewModel>(
     override fun updateUI(binding: FragmentMainBinding, data: MainData) {
         data.config?.let { config ->
             binding.pickColor1.text = config.color1
-            binding.pickColor1.setBackgroundColor(Color.parseColor(config.color1))
+            config.color1?.let { binding.pickColor1.setBackgroundColor(Color.parseColor(it)) }
             binding.pickColor2.text = config.color2
-            binding.pickColor2.setBackgroundColor(Color.parseColor(config.color2))
+            config.color2?.let { binding.pickColor2.setBackgroundColor(Color.parseColor(it)) }
+            binding.sensibilityAuto.isChecked = config.autoMinMax
             binding.ambient.setOnClickListener {
                 if (config.ambient) viewModel.ambientOff() else viewModel.ambientOn()
             }
@@ -44,9 +45,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainData, MainViewModel>(
 
     override fun setupUI(binding: FragmentMainBinding, context: Context) {
         super.setupUI(binding, context)
-        viewModel.data.value?.config?.let { config ->
-            binding.sensibilityAuto.isChecked = config.autoMinMax
-        }
         binding.dark.setOnClickListener { viewModel.dark() }
         binding.gradient.setOnClickListener { viewModel.gradient() }
         binding.color1.setOnClickListener { viewModel.color1() }
@@ -54,8 +52,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainData, MainViewModel>(
         binding.brightnessPlus.setOnClickListener { viewModel.moreLight() }
         binding.brightnessMinus.setOnClickListener { viewModel.lessLight() }
         binding.equalizer.setOnClickListener { viewModel.equalizer() }
-        binding.sensibilityAuto.setOnCheckedChangeListener { _, _ ->
-            viewModel.toggleAutoLevels() }
+        binding.sensibilityAuto.setOnClickListener { viewModel.toggleAutoLevels() }
         binding.sensibilityPlus.setOnClickListener { viewModel.increaseSensibility() }
         binding.sensibilityMinus.setOnClickListener { viewModel.resetSensibility() }
         binding.pickColor1.setOnClickListener {

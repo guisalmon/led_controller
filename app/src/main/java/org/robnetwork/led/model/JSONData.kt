@@ -35,10 +35,10 @@ data class ConfigJSONData(
     var fftCorrection: List<Float>,
 
     @SerializedName("color1")
-    var color1: String,
+    var color1: String? = "#000000",
 
     @SerializedName("color2")
-    var color2: String,
+    var color2: String? = "#000000",
 
     @SerializedName("brightness")
     var brightness: Int,

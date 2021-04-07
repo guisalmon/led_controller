@@ -27,10 +27,9 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun equalizer() = RetrofitClient.api.equalizer()
         .enqueue(StateCallback { update { it.copy(currentState = MainData.State.EQUALIZER) } })
 
-    fun on() = RetrofitClient.api.on().enqueue(StateCallback { })
-    fun off() = RetrofitClient.api.off().enqueue(StateCallback { })
+    fun on() = RetrofitClient.api.on().enqueue(ConfigCallback(this))
+    fun off() = RetrofitClient.api.off().enqueue(ConfigCallback(this))
     fun toggleSound() = RetrofitClient.api.toggleSound().enqueue(StateCallback { })
-    fun noiseStart() = RetrofitClient.api.noiseStart().enqueue(StateCallback { })
     fun moreLight() = RetrofitClient.api.moreLight().enqueue(ConfigCallback(this))
     fun lessLight() = RetrofitClient.api.lessLight().enqueue(ConfigCallback(this))
     fun changeColor1(color: String) = RetrofitClient.api.color1(color).enqueue(ConfigCallback(this))
@@ -39,12 +38,8 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun toggleAutoLevels() = RetrofitClient.api.toggleAutoLevels().enqueue(ConfigCallback(this))
     fun increaseSensibility() = RetrofitClient.api.increaseSensibility().enqueue(ConfigCallback(this))
     fun resetSensibility() = RetrofitClient.api.resetSensibility().enqueue(ConfigCallback(this))
-    fun toggleSource() = RetrofitClient.api.toggleSource().enqueue(ConfigCallback(this))
     fun ambientOn() = RetrofitClient.api.ambientOn().enqueue(ConfigCallback(this))
     fun ambientOff() = RetrofitClient.api.ambientOff().enqueue(ConfigCallback(this))
-    fun updateConfig() = data.value?.config?.let {
-        RetrofitClient.api.updateConfig(it).enqueue(ConfigCallback(this))
-    } ?: Log.e(this.javaClass.simpleName, "No config")
 
     fun getLevels(updateLevels: (LevelsJSONData) -> Unit) =
         RetrofitClient.api.levels().enqueue(LevelsCallback(this, updateLevels))
@@ -72,7 +67,10 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
 
         override fun onResponse(call: Call<ConfigJSONData>, response: Response<ConfigJSONData>) {
             response.body()
-                ?.let { config -> viewModel.update { data -> data.copy(config = config) } }
+                ?.let { config ->
+                    Log.i(javaClass.simpleName, config.toString())
+                    viewModel.update { data -> data.copy(config = config) }
+                }
         }
     }
 
