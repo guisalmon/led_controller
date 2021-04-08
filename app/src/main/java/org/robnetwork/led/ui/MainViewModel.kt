@@ -32,6 +32,7 @@ class MainViewModel(public override val data: MutableLiveData<MainData> = Mutabl
     fun toggleSound() = RetrofitClient.api.toggleSound().enqueue(StateCallback { })
     fun moreLight() = RetrofitClient.api.moreLight().enqueue(ConfigCallback(this))
     fun lessLight() = RetrofitClient.api.lessLight().enqueue(ConfigCallback(this))
+    fun brightness(value: Int) = RetrofitClient.api.brightness(value).enqueue(ConfigCallback(this))
     fun changeColor1(color: String) = RetrofitClient.api.color1(color).enqueue(ConfigCallback(this))
     fun changeColor2(color: String) = RetrofitClient.api.color2(color).enqueue(ConfigCallback(this))
     fun getConfig() = RetrofitClient.api.config().enqueue(ConfigCallback(this))

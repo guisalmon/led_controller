@@ -33,6 +33,9 @@ interface Api {
     @GET("brightness/-")
     fun lessLight(): Call<ConfigJSONData>
 
+    @GET("brightness/{value}")
+    fun brightness(@Path("value") value: Int): Call<ConfigJSONData>
+
     @GET("power/on")
     fun on(): Call<ConfigJSONData>
 

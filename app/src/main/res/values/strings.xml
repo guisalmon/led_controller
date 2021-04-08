@@ -12,4 +12,5 @@
     <string name="brightness_label">Brightness</string>
     <string name="server_down">Server unreachable</string>
     <string name="equalizer_offline">LEDs powered down</string>
+    <string name="layout_label">Layout</string>
 </resources>

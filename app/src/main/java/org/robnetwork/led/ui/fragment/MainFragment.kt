@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
+import com.google.android.material.slider.Slider
 import org.robnetwork.led.R
 import org.robnetwork.led.databinding.FragmentMainBinding
 import org.robnetwork.led.model.MainData
@@ -25,6 +26,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainData, MainViewModel>(
             binding.ambient.setOnClickListener {
                 if (config.ambient) viewModel.ambientOff() else viewModel.ambientOn()
             }
+            binding.brightnessSlider.value = config.brightness.toFloat()
         }
         data.currentState?.let {
             binding.color1.isChecked = false
@@ -49,8 +51,13 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainData, MainViewModel>(
         binding.gradient.setOnClickListener { viewModel.gradient() }
         binding.color1.setOnClickListener { viewModel.color1() }
         binding.color2.setOnClickListener { viewModel.color2() }
-        binding.brightnessPlus.setOnClickListener { viewModel.moreLight() }
-        binding.brightnessMinus.setOnClickListener { viewModel.lessLight() }
+        binding.brightnessSlider.setLabelFormatter { it.toInt().toString() }
+        binding.brightnessSlider.addOnSliderTouchListener(object : Slider.OnSliderTouchListener {
+            override fun onStartTrackingTouch(slider: Slider) {}
+            override fun onStopTrackingTouch(slider: Slider) {
+                viewModel.brightness(slider.value.toInt())
+            }
+        })
         binding.equalizer.setOnClickListener { viewModel.equalizer() }
         binding.sensibilityAuto.setOnClickListener { viewModel.toggleAutoLevels() }
         binding.sensibilityPlus.setOnClickListener { viewModel.increaseSensibility() }
