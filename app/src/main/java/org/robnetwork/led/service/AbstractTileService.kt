@@ -19,7 +19,7 @@ abstract class AbstractTileService : TileService() {
 
         ioScope.launch {
             qsTile.state =
-                if (NetworkUtils.isHostReachable("192.168.0.12", 5000, 500))
+                if (NetworkUtils.isHostReachable("raspi4.local", 5000, 500))
                     Tile.STATE_INACTIVE else Tile.STATE_UNAVAILABLE
             qsTile.updateTile()
         }.start()
