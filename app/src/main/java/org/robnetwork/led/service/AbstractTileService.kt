@@ -29,7 +29,7 @@ abstract class AbstractTileService : TileService() {
         RetrofitClient.api.config().enqueue(ConfigCallback(this))
     }
 
-    protected class ConfigCallback(val service: AbstractTileService) : Callback<ConfigJSONData> {
+    protected class ConfigCallback(private val service: AbstractTileService) : Callback<ConfigJSONData> {
         override fun onFailure(call: Call<ConfigJSONData>, t: Throwable) {
             this.service.qsTile.state = Tile.STATE_UNAVAILABLE
             this.service.qsTile.updateTile()

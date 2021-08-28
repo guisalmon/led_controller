@@ -2,7 +2,6 @@ package org.robnetwork.led.service
 
 import android.os.Build
 import android.service.quicksettings.Tile
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import org.robnetwork.led.model.ConfigJSONData
