@@ -32,6 +32,7 @@ abstract class AbstractTileService : TileService() {
     protected class ConfigCallback(val service: AbstractTileService) : Callback<ConfigJSONData> {
         override fun onFailure(call: Call<ConfigJSONData>, t: Throwable) {
             this.service.qsTile.state = Tile.STATE_UNAVAILABLE
+            this.service.qsTile.updateTile()
             Log.e(this.javaClass.simpleName, t.localizedMessage, t)
         }
 

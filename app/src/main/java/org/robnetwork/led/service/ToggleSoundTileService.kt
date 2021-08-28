@@ -15,6 +15,7 @@ import retrofit2.Response
 class ToggleSoundTileService : AbstractTileService() {
     override val configObserver: Observer<ConfigJSONData> = Observer {
         qsTile.state = Tile.STATE_INACTIVE
+        qsTile.updateTile()
     }
 
     override fun onClick() {
