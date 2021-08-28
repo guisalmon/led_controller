@@ -4,6 +4,7 @@
     <string name="toggle_sound_label">Sound System</string>
     <string name="power">Power</string>
     <string name="sound">Toggle Sound</string>
+    <string name="clock">Clock backlight</string>
     <string name="sensibility_label">Sensibility</string>
     <string name="sensibility_auto">Auto</string>
     <string name="plus">+</string>

@@ -89,4 +89,7 @@ interface Api {
 
     @GET("eq/off")
     fun eqOff(): Call<ConfigJSONData>
+
+    @GET("clock/backlight")
+    fun backlightToggle(): Call<ConfigJSONData>
 }

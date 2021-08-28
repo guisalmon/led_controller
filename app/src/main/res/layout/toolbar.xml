@@ -17,6 +17,18 @@
             android:layout_height="@dimen/size_07">
 
             <ImageButton
+                android:id="@+id/toolbar_clock"
+                android:layout_width="@dimen/size_07"
+                android:layout_height="@dimen/size_07"
+                android:src="@drawable/clock"
+                android:tint="@color/white"
+                android:background="@android:color/transparent"
+                app:layout_constraintEnd_toStartOf="@id/toolbar_sound_toggle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="@string/clock"/>
+
+            <ImageButton
                 android:id="@+id/toolbar_power"
                 android:layout_width="@dimen/size_07"
                 android:layout_height="@dimen/size_07"

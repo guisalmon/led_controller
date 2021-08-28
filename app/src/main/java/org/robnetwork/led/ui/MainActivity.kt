@@ -32,6 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainData, MainViewModel>(
                 if (config.on) viewModel.off() else viewModel.on()
             }
             binding.toolbar.toolbarSoundToggle.setOnClickListener { viewModel.toggleSound() }
+            binding.toolbar.toolbarClock.setOnClickListener { viewModel.toggleClock() }
         }
     }
 
