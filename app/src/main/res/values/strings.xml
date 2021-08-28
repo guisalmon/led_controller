@@ -2,6 +2,7 @@
     <string name="app_name">LED</string>
     <string name="quick_setting_label">Equalizer</string>
     <string name="toggle_sound_label">Sound System</string>
+    <string name="toggle_clock_label">Clock backlight</string>
     <string name="power">Power</string>
     <string name="sound">Toggle Sound</string>
     <string name="clock">Clock backlight</string>
