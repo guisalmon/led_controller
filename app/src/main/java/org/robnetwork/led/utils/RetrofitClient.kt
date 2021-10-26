@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     //private const val BASE_URL = "http://raspi4.local:5000/"
-    private const val BASE_URL = "http://192.168.0.11:5000/"
+    private const val BASE_URL = "http://192.168.0.14:5000/"
 
     val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
